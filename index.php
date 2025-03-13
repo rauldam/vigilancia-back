@@ -1,5 +1,8 @@
 <?php
 include('php/includes/Seguridad.php');
+include('php/includes/MobileDetect.php');
+$detect = new Mobile_Detect;
+$isMobile = $detect->isMobile();
 $seguridad = new Seguridad();
 $seguridad->language = "es";
 $seguridad->login_reader();
@@ -24,15 +27,23 @@ $error = $seguridad->the_msg;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="assets/css/main.css" />
       <style>
-  .p-viewer, .p-viewer2{
-      float: right;
-      margin-top: -30px;
-      position: relative;
-      z-index: 1;
-      padding-right: 5px;
-      cursor:pointer;
+      .p-viewer, .p-viewer2{
+          float: right;
+          margin-top: -30px;
+          position: relative;
+          z-index: 1;
+          padding-right: 5px;
+          cursor:pointer;
       }  
-  </style>
+      <?php if ($isMobile): ?>
+      .auth-cover-wrapper { display: none; }
+      .signin-wrapper { padding: 20px; }
+      .footer { display: none; }
+      .form-wrapper { max-width: 100%; }
+      .main-wrapper { padding: 0; }
+      .signin-section { min-height: 100vh; display: flex; align-items: center; }
+      <?php endif; ?>
+      </style>
   </head>
   <body>
    
@@ -44,6 +55,7 @@ $error = $seguridad->the_msg;
         <div class="container-fluid">
 
           <div class="row g-0 auth-row">
+            <?php if (!$isMobile): ?>
             <div class="col-lg-6">
               <div class="auth-cover-wrapper bg-primary-100">
                 <div class="auth-cover">
@@ -60,8 +72,9 @@ $error = $seguridad->the_msg;
                 </div>
               </div>
             </div>
+            <?php endif; ?>
             <!-- end col -->
-            <div class="col-lg-6">
+            <div class="<?php echo $isMobile ? 'col-12' : 'col-lg-6'; ?>">
               <div class="signin-wrapper">
                 <div class="form-wrapper">
                   <h6 class="mb-15">Acceder</h6>
@@ -112,6 +125,7 @@ $error = $seguridad->the_msg;
       <!-- ========== signin-section end ========== -->
 
       <!-- ========== footer start =========== -->
+      <?php if (!$isMobile): ?>
       <footer class="footer">
         <div class="container-fluid">
           <div class="row">
@@ -135,6 +149,7 @@ $error = $seguridad->the_msg;
         </div>
         <!-- end container -->
       </footer>
+      <?php endif; ?>
       <!-- ========== footer end =========== -->
     </main>
     <!-- ======== main-wrapper end =========== -->

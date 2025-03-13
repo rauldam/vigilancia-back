@@ -4,8 +4,10 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 /************* SEGURIDAD PDO **************/
 include('php/includes/Seguridad.php');
+include('php/includes/MobileDetect.php');
 $seguridad = new Seguridad();
 $seguridad->access_page();
+$isMobile = MobileDetect::isMobile();
 //$red = $_SESSION['red'];
 $red = "1";
 $idcliente = $seguridad->get_id_cliente();
@@ -36,17 +38,27 @@ $productos = $cliente->get_productos($param);
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon" />
     <title>SG - Vigilancia Normativa</title>
-
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <link href="https://cdn.lineicons.com/5.0/lineicons.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/materialdesignicons.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="assets/css/fullcalendar.css" />
-    <link rel="stylesheet" href="assets/css/fullcalendar.css" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <?php if ($isMobile): ?>
+    <style>
+      .sidebar-nav-wrapper { width: 100%; transform: translateX(-100%); }
+      .sidebar-nav-wrapper.active { transform: translateX(0); }
+      .main-wrapper { margin-left: 0; width: 100%; }
+      .header-right { justify-content: flex-end; }
+      .icon-card { margin-bottom: 15px; }
+      .table-wrapper { overflow-x: auto; }
+      .footer { display: none; }
+      .breadcrumb-wrapper { display: none; }
+    </style>
+    <?php endif; ?>
   </head>
   <body>
     <!-- ======== Preloader =========== -->
