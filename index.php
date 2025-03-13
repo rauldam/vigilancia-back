@@ -38,9 +38,6 @@ $error = $seguridad->the_msg;
           align-items: center;
           height: 30px;
       }
-          padding-right: 5px;
-          cursor:pointer;
-      }  
       <?php if ($isMobile): ?>
       .auth-cover-wrapper { display: none; }
       .signin-wrapper { padding: 20px; }
