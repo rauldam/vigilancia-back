@@ -1,7 +1,7 @@
 <?php
 include('php/includes/Seguridad.php');
 include('php/includes/MobileDetect.php');
-$detect = new Mobile_Detect;
+$detect = new MobileDetect;
 $isMobile = $detect->isMobile();
 $seguridad = new Seguridad();
 $seguridad->language = "es";
