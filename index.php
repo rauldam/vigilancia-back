@@ -29,9 +29,15 @@ $error = $seguridad->the_msg;
       <style>
       .p-viewer, .p-viewer2{
           float: right;
-          margin-top: -30px;
+          margin-top: -35px;
           position: relative;
           z-index: 1;
+          padding-right: 10px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          height: 30px;
+      }
           padding-right: 5px;
           cursor:pointer;
       }  
