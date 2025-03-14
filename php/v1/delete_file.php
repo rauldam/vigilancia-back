@@ -9,7 +9,7 @@ $seguridad->access_page();
 $cliente = new Cliente();
 $idcliente = $seguridad->get_id_cliente();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+if (isset($_POST['id'])) {
     $fileId = $_POST['id'];
     
     // Get file info before deletion
