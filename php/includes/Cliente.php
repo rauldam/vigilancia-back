@@ -284,7 +284,7 @@ class Cliente {
         if($sentencia->rowCount() > 0) {
             $response = array();
             $response[0] = true;
-            $response[1] = "Archivo guardado correctamente";
+            $response[1] = $this->conn->lastInsertId();
             return $response;
         } else {
             $response = array();

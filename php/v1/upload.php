@@ -47,7 +47,7 @@ if (!empty($_FILES)) {
         $result = $cliente->save_archivo_privado($param);
         
         if ($result[0]) {
-            echo json_encode(['success' => true]);
+            echo json_encode(['success' => true, 'fileName' => $uniqueFileName, 'fileType' => $fileType, 'filePath' => $uploadPath, 'fileId' => $result[1]]);
         } else {
             unlink($uploadPath);
             http_response_code(500);
