@@ -132,6 +132,14 @@ if (isset($_POST['usarioYcontrasenya'])) {
               <span class="text">Productos</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="archivos.php">
+              <span class="icon">
+                <i class="lni lni-folder"></i>
+              </span>
+              <span class="text">Archivos Privados</span>
+            </a>
+          </li>
             <li class="nav-item active">
             <a href="settings.php">
               <span class="icon">
