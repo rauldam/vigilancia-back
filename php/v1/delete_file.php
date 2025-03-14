@@ -9,8 +9,10 @@ $seguridad->access_page();
 $cliente = new Cliente();
 $idcliente = $seguridad->get_id_cliente();
 
-if (isset($_POST['id'])) {
-    $fileId = $_POST['id'];
+if (file_get_contents('php://input') != null) {
+    $entityBody = file_get_contents('php://input');
+    $data = json_decode($entityBody, true);
+    $fileId = $data['id'];
     
     // Get file info before deletion
     $fileInfo = $cliente->get_archivo_privado($fileId);
