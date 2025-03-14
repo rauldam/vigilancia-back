@@ -238,10 +238,8 @@ $archivos = $cliente->get_archivos_privados($param);
                     foreach ($archivos[1] as $archivo) {
                       echo '<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div class="card-style-2 mb-30">
-                          <div class="card-image d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
-                            <div class="icon" style="font-size: 2.5rem;">
-                              <i class="lni lni-file"></i>
-                            </div>
+                          <div class="card-image d-flex justify-content-center align-items-center bg-light" style="height: 350px;width:auto;">
+                            <iframe src="https://docs.google.com/viewer?url=test.serviciosdeconsultoria.es/"'.$archivo['ruta'].'" style="width:300px; height:350px;" frameborder="0"></iframe>
                           </div>
                           <div class="card-content">
                             <h6 class="mb-3">' . htmlspecialchars($archivo['nombre']) . '</h6>
@@ -250,10 +248,10 @@ $archivos = $cliente->get_archivos_privados($param);
                             </p>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                               <a href="' . $archivo['ruta'] . '" class="btn btn-primary btn-sm" target="_blank">
-                                <i class="lni lni-download"></i> Ver
+                               Descargar
                               </a>
                               <button class="btn btn-danger btn-sm" onclick="deleteFile(' . $archivo['id'] . ')">
-                                <i class="lni lni-trash"></i>
+                                Eliminar
                               </button>
                             </div>
                           </div>
@@ -346,10 +344,8 @@ $archivos = $cliente->get_archivos_privados($param);
               fileContainer.className = 'col-xl-3 col-lg-4 col-md-6 col-sm-6';
               fileContainer.innerHTML = `
                 <div class="card-style-2 mb-30">
-                  <div class="card-image d-flex justify-content-center align-items-center bg-light" style="height: 200px;">
-                    <div class="icon" style="font-size: 2.5rem;">
-                      <i class="lni lni-file"></i>
-                    </div>
+                  <div class="card-image d-flex justify-content-center align-items-center bg-light"  style="height: 350px;width:auto">
+                   <iframe src="https://docs.google.com/viewer?url=test.serviciosdeconsultoria.es/back/${response.filePath}" style="width:300px; height:350px;" frameborder="0"></iframe>
                   </div>
                   <div class="card-content">
                     <h6 class="mb-3">${response.fileName}</h6>
@@ -357,11 +353,11 @@ $archivos = $cliente->get_archivos_privados($param);
                       <i class="lni lni-calendar mr-1"></i> ${new Date().toLocaleString('es-ES')}
                     </p>
                     <div class="d-flex justify-content-between align-items-center mt-3">
-                      <a href="${response.filePath}" class="btn btn-primary btn-sm" target="_blank">
-                        <i class="lni lni-download"></i> Ver
+                      <a href="back/${response.filePath}" class="btn btn-primary btn-sm" target="_blank">
+                        Descargar
                       </a>
                       <button class="btn btn-danger btn-sm" onclick="deleteFile(${response.fileId})">
-                        <i class="lni lni-trash"></i>
+                        Eliminar
                       </button>
                     </div>
                   </div>
