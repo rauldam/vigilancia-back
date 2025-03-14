@@ -239,7 +239,7 @@ $archivos = $cliente->get_archivos_privados($param);
                       echo '<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                         <div class="card-style-2 mb-30">
                           <div class="card-image d-flex justify-content-center align-items-center bg-light" style="height: 350px;width:auto;">
-                            <iframe src="https://docs.google.com/viewer?url=vigilancianormativa.es/'.$archivo['ruta'].'" style="width:300px; height:350px;" frameborder="0"></iframe>
+                            <iframe src="https://docs.google.com/viewer?url=vigilancianormativa.es/back/'.$archivo['ruta'].'" style="width:300px; height:350px;" frameborder="0"></iframe>
                           </div>
                           <div class="card-content">
                             <h6 class="mb-3">' . htmlspecialchars($archivo['nombre']) . '</h6>
