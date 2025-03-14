@@ -219,6 +219,82 @@ class Cliente {
            return $response;
         }
     }
+
+    function get_archivos_privados($param) {
+        $sentencia = $this->conn->prepare("SELECT id, nombre, ruta, fecha_subida FROM archivos_privados WHERE clientes_idclientes = ? AND red_idred = ? AND cif = ? ORDER BY fecha_subida DESC");
+        $sentencia->bindParam(1, $param['idcliente']);
+        $sentencia->bindParam(2, $param['red']);
+        $sentencia->bindParam(3, $param['cif']);
+        $sentencia->execute();
+        $result = $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+        if($sentencia->rowCount() > 0) {
+            $response = array();
+            $response[0] = true;
+            $response[1] = $sentencia->fetchAll();
+            return $response;
+        } else {
+            $response = array();
+            $response[0] = false;
+            $response[1] = "No hay archivos para mostrar";
+            return $response;
+        }
+    }
+
+    function get_archivo_privado($id) {
+        $sentencia = $this->conn->prepare("SELECT ruta FROM archivos_privados WHERE id = ?");
+        $sentencia->bindParam(1, $id);
+        $sentencia->execute();
+        $result = $sentencia->setFetchMode(PDO::FETCH_ASSOC);
+        if($sentencia->rowCount() > 0) {
+            $response = array();
+            $response[0] = true;
+            $response[1] = $sentencia->fetchAll();
+            return $response;
+        } else {
+            $response = array();
+            $response[0] = false;
+            $response[1] = "Archivo no encontrado";
+            return $response;
+        }
+    }
+
+    function delete_archivo_privado($id) {
+        $sentencia = $this->conn->prepare("DELETE FROM archivos_privados WHERE id = ?");
+        $sentencia->bindParam(1, $id);
+        $sentencia->execute();
+        if($sentencia->rowCount() > 0) {
+            $response = array();
+            $response[0] = true;
+            $response[1] = "Archivo eliminado correctamente";
+            return $response;
+        } else {
+            $response = array();
+            $response[0] = false;
+            $response[1] = "Error al eliminar el archivo";
+            return $response;
+        }
+    }
+
+    function save_archivo_privado($param) {
+        $sentencia = $this->conn->prepare("INSERT INTO archivos_privados (clientes_idclientes, red_idred, nombre, ruta, tipo, fecha_subida) VALUES (?, ?, ?, ?, ?, NOW())");
+        $sentencia->bindParam(1, $param['idcliente']);
+        $sentencia->bindParam(2, $param['red']);
+        $sentencia->bindParam(3, $param['nombre']);
+        $sentencia->bindParam(4, $param['ruta']);
+        $sentencia->bindParam(5, $param['tipo']);
+        $sentencia->execute();
+        if($sentencia->rowCount() > 0) {
+            $response = array();
+            $response[0] = true;
+            $response[1] = "Archivo guardado correctamente";
+            return $response;
+        } else {
+            $response = array();
+            $response[0] = false;
+            $response[1] = "Error al guardar el archivo";
+            return $response;
+        }
+    }
 }
 
 ?>
