@@ -232,7 +232,7 @@ $archivos = $cliente->get_archivos_privados($param);
                     <h6 class="text-medium mb-30">Mis Archivos</h6>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row" id="files">
                   <?php
                   if ($archivos[0]) {
                     foreach ($archivos[1] as $archivo) {
@@ -367,7 +367,8 @@ $archivos = $cliente->get_archivos_privados($param);
                   </div>
                 </div>
               `;
-              document.querySelector('.row').insertBefore(fileContainer, document.querySelector('.row').firstChild);
+              //document.querySelector('.row').insertBefore(fileContainer, document.querySelector('.row').firstChild);
+              document.getElementById('files').appendChild(fileContainer);
               this.removeFile(file);
             } else {
               alert('Error al subir el archivo: ' + response.message);

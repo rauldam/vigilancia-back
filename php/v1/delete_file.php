@@ -9,8 +9,8 @@ $seguridad->access_page();
 $cliente = new Cliente();
 $idcliente = $seguridad->get_id_cliente();
 
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE' && isset($_GET['id'])) {
-    $fileId = $_GET['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+    $fileId = $_POST['id'];
     
     // Get file info before deletion
     $fileInfo = $cliente->get_archivo_privado($fileId);
