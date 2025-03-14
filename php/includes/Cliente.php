@@ -221,10 +221,8 @@ class Cliente {
     }
 
     function get_archivos_privados($param) {
-        $sentencia = $this->conn->prepare("SELECT id, nombre, ruta, fecha_subida FROM archivos_privados WHERE clientes_idclientes = ? AND red_idred = ? AND cif = ? ORDER BY fecha_subida DESC");
+        $sentencia = $this->conn->prepare("SELECT id, nombre, ruta, fecha_subida FROM archivos_privados WHERE idclientes = ?  ORDER BY fecha_subida DESC");
         $sentencia->bindParam(1, $param['idcliente']);
-        $sentencia->bindParam(2, $param['red']);
-        $sentencia->bindParam(3, $param['cif']);
         $sentencia->execute();
         $result = $sentencia->setFetchMode(PDO::FETCH_ASSOC);
         if($sentencia->rowCount() > 0) {
